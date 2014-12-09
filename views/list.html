@@ -1,0 +1,27 @@
+<div class="form-group">
+	<div class="input-group">
+		<input type="search" class="form-control" placeholder="Search" ng-model="query" />
+		<div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+	</div>
+</div>
+
+<div class="pull-right">
+	<button class="btn btn-success" ng-click="new()"><i class="glyphicon glyphicon-plus"></i> New Contact</button>
+</div>
+
+<table class="table table-hover table-striped">
+		<thead>
+			<tr>
+				<th ng-repeat="header in headers" ng-click="sort(header)">
+					{{ header | changeHeaderCase}}
+					<span ng-show="sort.header === header && !sort.order" class="glyphicon glyphicon-chevron-down"></span>
+					<span ng-show="sort.header === header && sort.order" class="glyphicon glyphicon-chevron-up"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-click="edit(contact.id)" ng-repeat="contact in contacts | filter: query | orderBy: sort.header : sort.order">
+				<td ng-repeat='header in headers'>{{ contact[header][0] }}</td>
+			</tr>
+		</tbody>
+</table>

@@ -1,0 +1,15 @@
+<h2>{{contact.firstName[0]}} {{contact.lastName[0]}}</h2>
+
+<form name="editContact" novalidate class="form-horizontal">
+
+	<form-field record="contact" field="firstName" required="true"></form-field>
+	<form-field record="contact" field="lastName" required="true"></form-field>
+	<form-field ng-repeat="(k, v) in contact | excludeField: 'firstName' | excludeField: 'lastName' | excludeField: 'id' | excludeField: 'userId'" record="contact" field="{{k}}"></form-field>
+
+	<div class="row form-group">
+		<div class="col-sm-offset-2">
+			<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+			<button class="btn btn-danger" ng-click="delete()">Delete</button>
+		</div>
+	</div>
+</form>
